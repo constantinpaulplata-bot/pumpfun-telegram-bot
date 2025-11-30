@@ -3,7 +3,9 @@ import axios from "axios";
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 
-const API_URL = "https://pump.fun/background-data/latest-tokens";
+// ENDPOINT NOU ȘI FUNCȚIONAL
+const API_URL = "https://pumpportal.fun/api/data/launches/recent";
+
 
 let sentTokens = new Set();
 
@@ -27,7 +29,7 @@ async function sendMessage(text) {
 async function checkTokens() {
   try {
     const response = await axios.get(API_URL);
-    const tokens = response.data.tokens || [];
+    const tokens = response.data || [];
 
     for (let token of tokens) {
       const mint = token.mint;
@@ -37,7 +39,7 @@ async function checkTokens() {
           `🚀 *NOU Token Pump.fun*\n\n` +
           `Name: ${token.name}\n` +
           `Symbol: ${token.symbol}\n` +
-          `MarketCap: ${token.marketCap}\n` +
+          `Creator: ${token.creator}\n` +
           `Mint: \`${mint}\``;
 
         await sendMessage(msg);
