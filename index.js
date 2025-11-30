@@ -6,7 +6,6 @@ const CHAT_ID = process.env.CHAT_ID;
 // ENDPOINT NOU ȘI FUNCȚIONAL
 const API_URL = "https://pumpportal.fun/api/data/launches/recent";
 
-
 let sentTokens = new Set();
 
 async function sendMessage(text) {
